@@ -31,21 +31,25 @@ public class MainActivity extends AppCompatActivity {
 
     public void onButtonCountClick(View view) {
 
-        if (txtEnteredText.length() == 0)
-        {
+        if(txtEnteredText.length() == 0){
             Toast.makeText(MainActivity.this,
-                    "Empty field is not allowed!",
+                    "You haven't entered text!",
                     Toast.LENGTH_SHORT).show();
+                    tvCount.setText("0");
         }
         else {
-
             if (spCounterSelection.getSelectedItem().toString().equalsIgnoreCase(getResources().getString(R.string.selection_chars))) {
                 tvCount.setText(String.valueOf(TextCounter.countChars(txtEnteredText.getText().toString())));
             }
             if (spCounterSelection.getSelectedItem().toString().equalsIgnoreCase(getResources().getString(R.string.selection_words))) {
                 tvCount.setText(String.valueOf(TextCounter.countWords(txtEnteredText.getText().toString())));
+                if(tvCount.getText().toString().contains("-1")){
+                    Toast.makeText(MainActivity.this,
+                            "Numbers are not words!",
+                            Toast.LENGTH_SHORT).show();
+                    tvCount.setText("Error");
+                }
             }
-
         }
     }
 }

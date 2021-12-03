@@ -3,6 +3,7 @@ package com.example.wordscounter;
 public class  TextCounter {
     public static int countWords(String s){
 
+        int intWord = -1;
         int wordCount = 0;
 
         boolean word = false;
@@ -21,7 +22,12 @@ public class  TextCounter {
                 wordCount++;
             }
         }
-        return wordCount;
+        if (s.length() > 0 && wordCount == 0) {
+            return intWord;
+        }
+        else
+            return wordCount;
+
     }
 
     public static int countChars(String s) {
